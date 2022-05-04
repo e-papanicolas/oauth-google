@@ -4,7 +4,18 @@ import React from "react";
 // import { useState, useEffect, createContext } from "react";
 
 export function App() {
-  const handleAuth = () => {};
+  const handleAuth = async () => {
+    const response = await fetch("/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: "data to be here" }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
 
   return (
     <div>
