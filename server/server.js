@@ -3,13 +3,16 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const logger = require("morgan");
 const mongoose = require("mongoose");
 const errors = require("./errorHandler");
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const authRouter = require("./routes/authRouter");
 
+app.use(logger("dev"));
 app.use(cors());
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/auth", authRouter);
